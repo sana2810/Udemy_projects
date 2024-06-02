@@ -1,0 +1,43 @@
+from tkinter import *
+from datetime import datetime
+App=Tk()
+App['background']='grey'
+App.title('Age Calculator')
+App.geometry('400x300')
+a=Label(App,text='Enter your DOB')
+a.grid(row=0,column=0,padx=15,pady=5,columnspan=2)
+b=Label(App,text='Date')
+b.grid(row=1,column=0,padx=15,pady=5)
+inp1=Entry(App,width=5)
+inp1.grid(row=1,column=1,padx=15,pady=5)
+c=Label(App,text='Months')
+c.grid(row=1,column=2,padx=15,pady=5)
+inp2=Entry(App,width=5)
+inp2.grid(row=1,column=3,padx=15,pady=5)
+d=Label(App,text='Year')
+d.grid(row=1,column=4,padx=15,pady=5)
+inp3=Entry(App,width=5)
+inp3.grid(row=1,column=5,padx=15,pady=5)
+def find_days():
+    date = int(inp1.get())
+    mon = int(inp2.get())
+    year = int(inp3.get())
+    dob = datetime(day=date, month=mon, year=year)
+    timenow = datetime.now()
+    diff = timenow - dob
+    days=Label(App,text='You lived '+str(diff.days)+'days!!')
+    days.grid(row=3,column=0,columnspan=2,padx=15,pady=5)
+def find_sec():
+    date = int(inp1.get())
+    mon = int(inp2.get())
+    year = int(inp3.get())
+    dob = datetime(day=date, month=mon, year=year)
+    timenow = datetime.now()
+    diff = timenow - dob
+    days = Label(App, text='You lived ' + str(diff.total_seconds()) + 'seconds!!')
+    days.grid(row=4, column=0, columnspan=3,padx=15,pady=5)
+dayB=Button(App,text='Days',command=find_days)
+dayB.grid(row=2,column=0,padx=15,pady=5)
+secB=Button(App,text='Seconds',command=find_sec)
+secB.grid(row=2,column=1,padx=15,pady=5)
+App.mainloop()
